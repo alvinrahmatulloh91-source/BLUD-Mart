@@ -3,6 +3,7 @@
   "include": [".astro/types.d.ts", "src/**/*", "drizzle.config.ts", "tailwind.config.ts"],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]

@@ -1,0 +1,4 @@
+#!/bin/bash
+export LD_LIBRARY_PATH="/home/lneo/Documents/BLUD-Mart/.php_ext/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+export PHP_INI_SCAN_DIR=":/home/lneo/Documents/BLUD-Mart/.php_conf"
+exec /usr/bin/php "$@"

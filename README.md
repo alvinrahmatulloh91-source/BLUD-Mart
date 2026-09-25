@@ -1,195 +1,66 @@
-# SKANSABA BLUD-MART - SMKN 1 BANTUL
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-Platform Digital BLUD (Badan Layanan Umum Daerah) untuk SMKN 1 Bantul — dibangun dengan **Astro**, **Drizzle ORM**, dan **MySQL**.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## 🏗️ Arsitektur
+## About Laravel
 
-```
-SMKN 1 BANTUL
-        ↓
-PORTAL BLUD (Skansaba BLUD-Mart)
-        ↓
-SEMUA UNIT PRODUKSI
-        ↓
-PILIH 1 UNIT
-        ↓
-WEBSITE MANDIRI UNIT
-        ↓
-KATALOG MANDIRI UNIT
-        ↓
-PRODUK / JASA / LAYANAN
-        ↓
-PEMESANAN → TRANSAKSI
-```
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-## 🛠️ Tech Stack
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- **Framework:** Astro 5 (output `server`, adapter Node.js)
-- **Bahasa:** TypeScript strict
-- **Styling:** Tailwind CSS 3
-- **Database:** MySQL + Drizzle ORM (mysql2)
-- **Icons:** Inline SVG (gaya Lucide)
-- **Validasi:** Zod
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## 🚀 Quick Start
+## Learning Laravel
 
-### Prerequisites
-- Node.js 18.17+ / 20+
-- MySQL 8+
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-### 1. Install Dependencies
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-```bash
-npm install
-```
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-### 2. Setup Environment
+## Laravel Sponsors
 
-```bash
-cp .env.example .env
-```
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-Edit `.env`:
+### Premium Partners
 
-```env
-DATABASE_URL="mysql://root:password@localhost:3306/skansaba_blud"
-```
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
-### 3. Setup Database
+## Contributing
 
-Buat database, lalu push schema dan seed:
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-```bash
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS skansaba_blud"
+## Code of Conduct
 
-npm run db:push      # push schema Drizzle ke MySQL
-npm run db:seed      # isi data demo
-```
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-Atau gunakan migration files:
+## Security Vulnerabilities
 
-```bash
-npm run db:generate  # generate migration dari schema
-npm run db:migrate   # jalankan migration
-```
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-### 4. Run Development Server
+## License
 
-```bash
-npm run dev
-```
-
-Buka [http://localhost:3000](http://localhost:3000)
-
-> **Catatan:** Tanpa `DATABASE_URL`, situs tetap berjalan dengan **data demo** (fallback) sehingga cocok untuk preview cepat.
-
-## 📜 Scripts
-
-| Perintah | Keterangan |
-|---|---|
-| `npm run dev` | Development server (Astro) |
-| `npm run build` | Build produksi |
-| `npm run preview` | Preview hasil build |
-| `npm run check` | `astro check` (type checking) |
-| `npm run db:push` | Push schema ke database |
-| `npm run db:generate` | Generate migration |
-| `npm run db:migrate` | Jalankan migration |
-| `npm run db:studio` | Drizzle Studio |
-| `npm run db:seed` | Seed data demo |
-
-## 📁 Struktur Folder
-
-```
-src/
-├── components/          # Komponen Astro (header, footer, link, icons)
-├── layouts/
-│   └── BaseLayout.astro # Layout dasar (head, meta, font)
-├── lib/
-│   ├── data/            # Data layer (units, student works) + fallback demo
-│   ├── db/              # Drizzle client, schema, seed
-│   ├── fonts.ts         # Font loader
-│   ├── utils.ts         # formatRupiah, formatDate, dll
-│   └── validations.ts   # Zod schemas
-├── pages/
-│   ├── index.astro              # Beranda sekolah
-│   ├── 404.astro                # Not found
-│   ├── api/health.ts            # API endpoint contoh
-│   └── blud/
-│       ├── index.astro          # Beranda BLUD
-│       ├── tentang.astro        # Tentang BLUD
-│       ├── unit/index.astro     # Direktori unit
-│       ├── karya-siswa/         # Karya siswa
-│       └── [unitSlug]/          # Mini-site unit
-│           ├── index.astro      # Beranda unit
-│           ├── katalog.astro    # Katalog produk
-│           ├── layanan.astro    # Layanan
-│           ├── portofolio.astro # Portofolio
-│           └── kontak.astro     # Kontak
-├── styles/globals.css   # Tailwind + design tokens
-└── types/index.ts       # Shared types
-```
-
-## 🏢 Unit Produksi
-
-1. **K-Tuba Digital Printing** - Digital Printing / Produksi
-2. **Solusi Sistem Digital (SSD)** - Pengembangan Perangkat Lunak
-3. **Jari Manis** - Kreatif & Desain
-4. **Skansaba IT Solution** - IT & Digital Service
-5. **LKM Mitra Siswa Abadi** - Keuangan & Perbankan
-6. **SKANSABA STORE** - Retail & Merchandise
-
-*Note: Cafetaria ada di database tetapi tidak ditampilkan di portal publik (isPublic=false)*
-
-## 🎨 Design System
-
-- Primary: `#0033A0` (Blue)
-- Secondary: `#F7941D` (Orange)
-- Background: `#FFFFFF`
-- Text: `#172033`
-
-## 🔒 Security Features
-
-- Input validation (Zod)
-- SQL injection prevention (Drizzle parameterized queries)
-- Environment variables untuk kredensial
-
-## 🛒 Shopping Flow
-
-1. Pilih Unit dari direktori
-2. Masuk ke website unit
-3. Browse katalog unit
-4. Tambah ke keranjang (hanya produk dari unit yang sama)
-5. Checkout (form customer info)
-6. Pembayaran (simulasi QRIS/Transfer)
-7. Tracking pesanan
-
-**Penting:** Keranjang hanya boleh berisi produk dari SATU unit.
-
-## 📖 API Endpoints
-
-- `GET /api/health` - Health check
-- `GET /blud/unit` - Direktori unit (SSR)
-- `GET /blud/[unitSlug]` - Mini-site unit (SSR)
-
-## 🚀 Production Deployment
-
-```bash
-npm run build
-node ./dist/server/entry.mjs
-```
-
-Atau dengan PM2:
-
-```bash
-pm2 start dist/server/entry.mjs --name skansaba-blud
-```
-
-Setup reverse proxy Nginx ke port aplikasi (default 3000).
-
-## 📄 License
-
-Proprietary - SMKN 1 Bantul
-
----
-
-**Developed for SMKN 1 Bantul BLUD Digitalization**
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
