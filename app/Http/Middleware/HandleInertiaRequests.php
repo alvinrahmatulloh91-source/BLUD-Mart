@@ -17,7 +17,7 @@ class HandleInertiaRequests extends Middleware
     protected $rootView = 'app';
 
     /**
-     * Determines the current asset version.
+     * Defines the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
      */
@@ -37,7 +37,20 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
+            'app' => [
+                'name' => config('app.name', 'Skansaba BLUD-Mart'),
+            ],
+            'auth.user' => fn () => $request->user()
+                ? [
+                    'id' => $request->user()->id,
+                    'name' => $request->user()->name,
+                    'email' => $request->user()->email,
+                    'is_admin' => (bool) $request->user()->is_admin,
+                ]
+                : null,
+            'flash' => fn () => [
+                'success' => fn () => $request->session()->get('success'),
+            ],
         ];
     }
 }
