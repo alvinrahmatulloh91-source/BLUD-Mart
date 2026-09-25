@@ -8,28 +8,29 @@ interface Props {
 }
 
 const {
-  title = "SMKN 1 BANTUL - SKANSABA BLUD-MART",
-  description = "Platform Digital BLUD SMKN 1 Bantul - Portal Unit Produksi dan Jasa",
+  title = "SMKN 1 BANTUL - Sekolah Pusat Keunggulan & SKANSABA BLUD-MART",
+  description = "Website Resmi SMKN 1 Bantul terintegrasi dengan Platform Digital SKANSABA BLUD-MART - Portal Unit Produksi, Jasa, dan Katalog Kreatif.",
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="https://smkn1bantul.sch.id/logo.png" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content={description}
-    />
+    <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="id_ID" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
-  <body class={`${Inter.className} antialiased`}>
+  <body class={`${Inter.className} antialiased selection:bg-primary selection:text-white bg-slate-50 text-slate-900`}>
     <slot />
   </body>
 </html>

@@ -3,40 +3,52 @@ import Link from "./Link.astro";
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t py-12 bg-muted/50">
-  <div class="container">
-    <div class="grid md:grid-cols-4 gap-8">
+<footer class="border-t py-12 bg-slate-900 text-white">
+  <div class="container mx-auto px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
-        <h3 class="font-bold text-lg mb-4 text-secondary">SKANSABA BLUD-MART</h3>
-        <p class="text-sm text-muted-foreground">
-          Portal Digital Badan Layanan Umum Daerah SMKN 1 Bantul
+        <div class="flex items-center gap-2 mb-3">
+          <img
+            src="https://smkn1bantul.sch.id/logo.png"
+            alt="Logo SMKN 1 Bantul"
+            class="w-7 h-7 object-contain"
+            onerror="this.src='/logo.png'"
+          />
+          <h3 class="font-bold text-lg text-secondary">SKANSABA BLUD-MART</h3>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Portal Digital Badan Layanan Umum Daerah (BLUD) dan Teaching Factory SMKN 1 Bantul.
         </p>
       </div>
       <div>
-        <h4 class="font-semibold mb-4">Navigasi</h4>
-        <ul class="space-y-2 text-sm text-muted-foreground">
-          <li><Link href="/blud" class="hover:text-primary">Beranda BLUD</Link></li>
-          <li><Link href="/blud/unit" class="hover:text-primary">Semua Unit</Link></li>
-          <li><Link href="/blud/karya-siswa" class="hover:text-primary">Karya Siswa</Link></li>
+        <h4 class="font-semibold text-sm mb-4 text-slate-200">Navigasi BLUD</h4>
+        <ul class="space-y-2 text-xs text-slate-400">
+          <li><Link href="/blud" class="hover:text-amber-400">Beranda BLUD</Link></li>
+          <li><Link href="/blud/unit" class="hover:text-amber-400">Semua Unit Bisnis</Link></li>
+          <li><Link href="/blud/karya-siswa" class="hover:text-amber-400">Portofolio Karya Siswa</Link></li>
+          <li><Link href="/blud/tentang" class="hover:text-amber-400">Tentang Ekosistem BLUD</Link></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold mb-4">Informasi</h4>
-        <ul class="space-y-2 text-sm text-muted-foreground">
-          <li><Link href="/blud/tentang" class="hover:text-primary">Tentang BLUD</Link></li>
-          <li><Link href="/" class="hover:text-primary">SMKN 1 Bantul</Link></li>
+        <h4 class="font-semibold text-sm mb-4 text-slate-200">Website Sekolah</h4>
+        <ul class="space-y-2 text-xs text-slate-400">
+          <li><Link href="/" class="hover:text-blue-300">Beranda SMKN 1 Bantul</Link></li>
+          <li><a href="/#profil" class="hover:text-blue-300">Profil & Sambutan</a></li>
+          <li><a href="/#jurusan" class="hover:text-blue-300">7 Program Keahlian</a></li>
+          <li><a href="/#berita" class="hover:text-blue-300">Berita & Informasi</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="font-semibold mb-4">Kontak</h4>
-        <p class="text-sm text-muted-foreground">
-          Jl. Pramuka No. 27 Bantul<br />
-          blud@smkn1bantul.sch.id
+        <h4 class="font-semibold text-sm mb-4 text-slate-200">Kontak Resmi</h4>
+        <p class="text-xs text-slate-400 leading-relaxed space-y-1">
+          <span>Jl. Parangtritis No.KM.11, Sabdodadi, Bantul</span><br />
+          <span>Hotline: +62 851-2260-3820</span><br />
+          <span>Email: blud@smkn1bantul.sch.id</span>
         </p>
       </div>
     </div>
-    <div class="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-      © {year} SKANSABA BLUD-MART - SMKN 1 BANTUL
+    <div class="mt-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+      © {year} SKANSABA BLUD-MART & SMKN 1 BANTUL. All rights reserved.
     </div>
   </div>
 </footer>
