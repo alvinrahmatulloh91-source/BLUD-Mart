@@ -19,38 +19,28 @@ const cuid = () => randomUUID();
 // ENUMS
 // ============================================
 
-export const roleEnum = mysqlEnum("role", [
-  "SUPER_ADMIN",
-  "BLUD_ADMIN",
-  "UNIT_ADMIN",
-  "CUSTOMER",
-]);
+// Factory functions so every table gets its own column builder instance
+export const roleEnum = () =>
+  mysqlEnum("role", ["SUPER_ADMIN", "BLUD_ADMIN", "UNIT_ADMIN", "CUSTOMER"]);
 
-export const productTypeEnum = mysqlEnum("product_type", [
-  "PRODUCT",
-  "SERVICE",
-  "DIGITAL_SERVICE",
-]);
+export const productTypeEnum = () =>
+  mysqlEnum("product_type", ["PRODUCT", "SERVICE", "DIGITAL_SERVICE"]);
 
-export const orderStatusEnum = mysqlEnum("order_status", [
-  "PENDING_PAYMENT",
-  "PAID",
-  "PROCESSING",
-  "IN_PROGRESS",
-  "COMPLETED",
-  "CANCELLED",
-]);
+export const orderStatusEnum = () =>
+  mysqlEnum("order_status", [
+    "PENDING_PAYMENT",
+    "PAID",
+    "PROCESSING",
+    "IN_PROGRESS",
+    "COMPLETED",
+    "CANCELLED",
+  ]);
 
-export const publicationStatusEnum = mysqlEnum("status", [
-  "DRAFT",
-  "PUBLISHED",
-  "UNPUBLISHED",
-]);
+export const publicationStatusEnum = () =>
+  mysqlEnum("status", ["DRAFT", "PUBLISHED", "UNPUBLISHED"]);
 
-const createdAt = () =>
-  timestamp("created_at", { withTimezone: false }).notNull().defaultNow();
-const updatedAt = () =>
-  timestamp("updated_at", { withTimezone: false }).notNull().defaultNow();
+const createdAt = () => timestamp("created_at").notNull().defaultNow();
+const updatedAt = () => timestamp("updated_at").notNull().defaultNow();
 
 // ============================================
 // USER & AUTHENTICATION

@@ -1,0 +1,42 @@
+---
+import Link from "./Link.astro";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t py-12 bg-muted/50">
+  <div class="container">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-secondary">SKANSABA BLUD-MART</h3>
+        <p class="text-sm text-muted-foreground">
+          Portal Digital Badan Layanan Umum Daerah SMKN 1 Bantul
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Navigasi</h4>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><Link href="/blud" class="hover:text-primary">Beranda BLUD</Link></li>
+          <li><Link href="/blud/unit" class="hover:text-primary">Semua Unit</Link></li>
+          <li><Link href="/blud/karya-siswa" class="hover:text-primary">Karya Siswa</Link></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Informasi</h4>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><Link href="/blud/tentang" class="hover:text-primary">Tentang BLUD</Link></li>
+          <li><Link href="/" class="hover:text-primary">SMKN 1 Bantul</Link></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Kontak</h4>
+        <p class="text-sm text-muted-foreground">
+          Jl. Pramuka No. 27 Bantul<br />
+          blud@smkn1bantul.sch.id
+        </p>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+      © {year} SKANSABA BLUD-MART - SMKN 1 BANTUL
+    </div>
+  </div>
+</footer>

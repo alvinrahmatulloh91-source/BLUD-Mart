@@ -1,0 +1,24 @@
+---
+import Link from "./Link.astro";
+import { icon } from "./icons";
+---
+
+<header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container flex h-16 items-center justify-between">
+    <div class="flex items-center gap-2">
+      <Fragment set:html={icon("building-2", "h-6 w-6 text-primary")} />
+      <span class="text-xl font-bold text-primary">SMKN 1 BANTUL</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-6">
+      <Link href="/" class="text-sm font-medium hover:text-primary">Beranda</Link>
+      <Link href="/profil" class="text-sm font-medium hover:text-primary">Profil</Link>
+      <Link href="/program-keahlian" class="text-sm font-medium hover:text-primary">Program Keahlian</Link>
+      <Link href="/kesiswaan" class="text-sm font-medium hover:text-primary">Kesiswaan</Link>
+      <Link href="/berita" class="text-sm font-medium hover:text-primary">Berita</Link>
+      <Link href="/agenda" class="text-sm font-medium hover:text-primary">Agenda</Link>
+      <Link href="/galeri" class="text-sm font-medium hover:text-primary">Galeri</Link>
+      <Link href="/blud" class="text-sm font-medium text-secondary hover:text-secondary/80">BLUD</Link>
+      <Link href="/kontak" class="text-sm font-medium hover:text-primary">Kontak</Link>
+    </nav>
+  </div>
+</header>

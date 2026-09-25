@@ -1,10 +1,9 @@
-```
 # Dependencies
 node_modules/
 
 # Build outputs
 dist/
-build/
+.astro/
 .next/
 out/
 
@@ -13,41 +12,15 @@ out/
 .env.local
 .env.*
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
+# Logs
 *.log
+npm-debug.log*
 
-# TypeScript/JavaScript
+# TypeScript
 *.tsbuildinfo
-*.js.map
-*.jsx.map
-*.ts.map
-*.tsx.map
 
-# Prisma
-prisma/migrations/
-prisma/generated/
-
-# Next.js
-.next/
-.next/cache/
-out/
+# Drizzle (migrations generated locally)
+drizzle/meta/
 
 # Temporary files
 *.tmp
@@ -64,5 +37,3 @@ out/
 .Trashes
 ehthumbs.db
 Thumbs.db
-Icon?
-```

@@ -1,0 +1,35 @@
+---
+import "../styles/globals.css";
+import { Inter } from "@/lib/fonts";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "SMKN 1 BANTUL - SKANSABA BLUD-MART",
+  description = "Platform Digital BLUD SMKN 1 Bantul - Portal Unit Produksi dan Jasa",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content={description}
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <title>{title}</title>
+  </head>
+  <body class={`${Inter.className} antialiased`}>
+    <slot />
+  </body>
+</html>

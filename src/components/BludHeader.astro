@@ -1,0 +1,29 @@
+---
+import Link from "./Link.astro";
+import { icon } from "./icons";
+
+const path = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/blud" ? path === "/blud" : path.startsWith(href);
+---
+
+<header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container flex h-16 items-center justify-between">
+    <div class="flex items-center gap-2">
+      <Fragment set:html={icon("building-2", "h-6 w-6 text-secondary")} />
+      <div>
+        <span class="text-lg font-bold text-secondary">SKANSABA BLUD-MART</span>
+        <p class="text-xs text-muted-foreground">Portal Digital BLUD SMKN 1 Bantul</p>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-6">
+      <Link href="/blud" class:list={["text-sm font-medium hover:text-primary", isActive("/blud") && "text-primary"]}>Beranda BLUD</Link>
+      <Link href="/blud/unit" class:list={["text-sm font-medium hover:text-primary", isActive("/blud/unit") && !isActive("/blud/karya-siswa") && !isActive("/blud/tentang") && "text-primary"]}>Semua Unit</Link>
+      <Link href="/blud/karya-siswa" class:list={["text-sm font-medium hover:text-primary", isActive("/blud/karya-siswa") && "text-primary"]}>Karya Siswa</Link>
+      <Link href="/blud/tentang" class:list={["text-sm font-medium hover:text-primary", isActive("/blud/tentang") && "text-primary"]}>Tentang BLUD</Link>
+    </nav>
+    <Link href="/" class="text-sm text-muted-foreground hover:text-primary">
+      Kembali ke SMKN 1 Bantul
+    </Link>
+  </div>
+</header>

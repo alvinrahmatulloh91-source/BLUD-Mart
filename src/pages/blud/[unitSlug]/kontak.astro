@@ -1,0 +1,67 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import UnitHeader from "@/components/UnitHeader.astro";
+import { icon } from "@/components/icons";
+import { getUnitBySlug } from "@/lib/data/units";
+
+const { unitSlug } = Astro.params;
+const unit = unitSlug ? await getUnitBySlug(unitSlug) : null;
+if (!unit) return Astro.redirect("/blud/unit");
+---
+
+<BaseLayout title={`Kontak ${unit.name} - SKANSABA BLUD-MART`}>
+  <UnitHeader unitSlug={unit.slug} unitName={unit.name} />
+
+  <main class="py-12">
+    <div class="container max-w-3xl">
+      <h1 class="text-3xl font-bold mb-2">Hubungi Kami</h1>
+      <p class="text-muted-foreground mb-8">
+        Untuk informasi pemesanan layanan dan produk dari {unit.name}.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-xl border bg-card">
+          <Fragment set:html={icon("mail", "h-8 w-8 text-secondary mb-4")} />
+          <h3 class="font-semibold mb-2">Email</h3>
+          <p class="text-sm text-muted-foreground">blud@smkn1bantul.sch.id</p>
+        </div>
+        <div class="p-6 rounded-xl border bg-card">
+          <Fragment set:html={icon("building-2", "h-8 w-8 text-secondary mb-4")} />
+          <h3 class="font-semibold mb-2">Alamat</h3>
+          <p class="text-sm text-muted-foreground">
+            SMKN 1 Bantul<br />
+            Jl. Pramuka No. 27 Bantul
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 rounded-xl border bg-secondary/5">
+        <h3 class="font-semibold mb-2">Pemesanan</h3>
+        <p class="text-sm text-muted-foreground">
+          Kunjungi katalog untuk melihat produk, atau layanan untuk melihat jasa yang
+          tersedia, lalu hubungi kontak di atas untuk proses pemesanan.
+        </p>
+        <div class="flex gap-4 mt-4">
+          <a
+            href={`/blud/${unit.slug}/katalog`}
+            class="text-sm font-medium text-primary hover:underline"
+          >
+            Lihat Katalog →
+          </a>
+          <a
+            href={`/blud/${unit.slug}/layanan`}
+            class="text-sm font-medium text-secondary hover:underline"
+          >
+            Lihat Layanan →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t py-8 bg-muted/50">
+    <div class="container text-center text-sm text-muted-foreground">
+      © {new Date().getFullYear()} {unit.name} - SKANSABA BLUD-MART
+    </div>
+  </footer>
+</BaseLayout>

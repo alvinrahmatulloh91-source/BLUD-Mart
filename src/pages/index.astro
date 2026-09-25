@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SchoolHeader from "@/components/SchoolHeader.astro";
+import SchoolFooter from "@/components/SchoolFooter.astro";
+import Link from "@/components/Link.astro";
+import { icon } from "@/components/icons";
+---
+
+<BaseLayout>
+  <SchoolHeader />
+
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-primary">SMKN 1 BANTUL</h1>
+      <p class="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+        Sekolah Menengah Kejuruan Unggulan yang Menghasilkan Lulusan Kompeten dan
+        Berkarakter
+      </p>
+      <div class="flex justify-center gap-4">
+        <Link
+          href="/blud"
+          class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+        >
+          Kunjungi BLUD-Mart
+          <Fragment set:html={icon("arrow-right", "h-4 w-4")} />
+        </Link>
+        <Link
+          href="/profil"
+          class="inline-flex items-center gap-2 border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary/5 transition-colors"
+        >
+          Profil Sekolah
+        </Link>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="py-16">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12">Layanan & Informasi</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <Link href="/program-keahlian" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center">
+          <Fragment set:html={icon("book-open", "h-10 w-10 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">Program Keahlian</h3>
+        </Link>
+        <Link href="/kesiswaan" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center">
+          <Fragment set:html={icon("users", "h-10 w-10 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">Kesiswaan</h3>
+        </Link>
+        <Link href="/berita" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center">
+          <Fragment set:html={icon("newspaper", "h-10 w-10 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">Berita</h3>
+        </Link>
+        <Link href="/agenda" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center">
+          <Fragment set:html={icon("calendar", "h-10 w-10 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">Agenda</h3>
+        </Link>
+        <Link href="/galeri" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center">
+          <Fragment set:html={icon("image", "h-10 w-10 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">Galeri</h3>
+        </Link>
+        <Link href="/blud" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center">
+          <Fragment set:html={icon("building-2", "h-10 w-10 mx-auto mb-4 text-secondary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">BLUD-Mart</h3>
+        </Link>
+        <Link href="/kontak" class="group p-6 rounded-xl border bg-card hover:shadow-lg transition-all text-center col-span-2 md:col-span-2">
+          <Fragment set:html={icon("trophy", "h-10 w-10 mx-auto mb-4 text-primary group-hover:scale-110 transition-transform")} />
+          <h3 class="font-semibold">Prestasi Siswa</h3>
+        </Link>
+      </div>
+    </div>
+  </section>
+
+  <SchoolFooter />
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import UnitHeader from "@/components/UnitHeader.astro";
+import { icon } from "@/components/icons";
+import { getUnitBySlug, getUnitServices } from "@/lib/data/units";
+import { formatRupiah } from "@/lib/utils";
+
+const { unitSlug } = Astro.params;
+const unit = unitSlug ? await getUnitBySlug(unitSlug) : null;
+if (!unit) return Astro.redirect("/blud/unit");
+
+const services = await getUnitServices(unit.id);
+---
+
+<BaseLayout title={`Layanan ${unit.name} - SKANSABA BLUD-MART`}>
+  <UnitHeader unitSlug={unit.slug} unitName={unit.name} />
+
+  <main class="py-12">
+    <div class="container">
+      <h1 class="text-3xl font-bold mb-2">Layanan</h1>
+      <p class="text-muted-foreground mb-8">Layanan yang disediakan oleh {unit.name}.</p>
+
+      {
+        services.length === 0 ? (
+          <div class="text-center py-12 border rounded-xl bg-card">
+            <Fragment set:html={icon("wrench", "h-12 w-12 text-muted-foreground mx-auto mb-4")} />
+            <h3 class="font-semibold mb-2">Belum ada layanan</h3>
+            <p class="text-sm text-muted-foreground">Layanan akan segera hadir.</p>
+          </div>
+        ) : (
+          <div class="grid md:grid-cols-2 gap-6">
+            {services.map((service) => (
+              <div class="p-6 rounded-xl border bg-card hover:shadow-md transition-all">
+                <div class="flex items-start justify-between mb-2">
+                  <h3 class="font-semibold text-lg">{service.name}</h3>
+                  {service.priceFrom !== null && (
+                    <span class="text-secondary font-bold whitespace-nowrap ml-4">
+                      Mulai {formatRupiah(service.priceFrom)}
+                    </span>
+                  )}
+                </div>
+                <p class="text-sm text-muted-foreground mb-4">{service.description}</p>
+                <div class="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                  {service.duration && <span>⏱ {service.duration}</span>}
+                  {service.requirements && <span>📋 {service.requirements}</span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </main>
+
+  <footer class="border-t py-8 bg-muted/50">
+    <div class="container text-center text-sm text-muted-foreground">
+      © {new Date().getFullYear()} {unit.name} - SKANSABA BLUD-MART
+    </div>
+  </footer>
+</BaseLayout>

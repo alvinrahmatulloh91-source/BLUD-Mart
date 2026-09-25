@@ -1,0 +1,37 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import UnitHeader from "@/components/UnitHeader.astro";
+import { icon } from "@/components/icons";
+import { getUnitBySlug } from "@/lib/data/units";
+
+const { unitSlug } = Astro.params;
+const unit = unitSlug ? await getUnitBySlug(unitSlug) : null;
+if (!unit) return Astro.redirect("/blud/unit");
+---
+
+<BaseLayout title={`Portofolio ${unit.name} - SKANSABA BLUD-MART`}>
+  <UnitHeader unitSlug={unit.slug} unitName={unit.name} />
+
+  <main class="py-12">
+    <div class="container">
+      <h1 class="text-3xl font-bold mb-2">Portofolio</h1>
+      <p class="text-muted-foreground mb-8">
+        Karya dan proyek yang telah diselesaikan oleh {unit.name}.
+      </p>
+
+      <div class="text-center py-12 border rounded-xl bg-card">
+        <Fragment set:html={icon("image", "h-12 w-12 text-muted-foreground mx-auto mb-4")} />
+        <h3 class="font-semibold mb-2">Portofolio segera hadir</h3>
+        <p class="text-sm text-muted-foreground">
+          Dokumentasi proyek unit akan ditampilkan di sini.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t py-8 bg-muted/50">
+    <div class="container text-center text-sm text-muted-foreground">
+      © {new Date().getFullYear()} {unit.name} - SKANSABA BLUD-MART
+    </div>
+  </footer>
+</BaseLayout>

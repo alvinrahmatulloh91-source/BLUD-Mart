@@ -1,0 +1,109 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BludHeader from "@/components/BludHeader.astro";
+import BludFooter from "@/components/BludFooter.astro";
+import Link from "@/components/Link.astro";
+import { icon } from "@/components/icons";
+import { getPublicUnits } from "@/lib/data/units";
+
+const units = (await getPublicUnits()).slice(0, 3);
+---
+
+<BaseLayout title="SKANSABA BLUD-MART - Portal BLUD SMKN 1 Bantul">
+  <BludHeader />
+
+  <!-- Hero Section -->
+  <section class="py-20 bg-gradient-to-br from-secondary/10 to-primary/5">
+    <div class="container text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 text-primary">
+        Semua Unit BLUD dalam Satu Platform
+      </h1>
+      <p class="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+        Kenali berbagai unit produksi, jasa, layanan, dan karya produktif dalam
+        ekosistem BLUD SMKN 1 Bantul.
+      </p>
+      <div class="flex justify-center gap-4">
+        <Link
+          href="/blud/unit"
+          class="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-lg font-semibold hover:bg-secondary/90 transition-colors text-lg"
+        >
+          Jelajahi Semua Unit
+          <Fragment set:html={icon("arrow-right", "h-5 w-5")} />
+        </Link>
+        <Link
+          href="/blud/tentang"
+          class="inline-flex items-center gap-2 border border-primary text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary/5 transition-colors text-lg"
+        >
+          Pelajari BLUD
+        </Link>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16">
+    <div class="container">
+      <h2 class="text-3xl font-bold text-center mb-12">Ekosistem BLUD SMKN 1 Bantul</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 rounded-xl border bg-card hover:shadow-lg transition-all">
+          <Fragment set:html={icon("layers", "h-12 w-12 text-secondary mb-4")} />
+          <h3 class="text-xl font-semibold mb-2">Unit Produksi</h3>
+          <p class="text-muted-foreground">
+            Berbagai unit produksi yang dikelola oleh siswa dengan bimbingan guru
+            profesional.
+          </p>
+          <Link href="/blud/unit" class="text-secondary font-medium mt-4 inline-flex items-center gap-1 hover:gap-2 transition-all">
+            Lihat Unit <Fragment set:html={icon("arrow-right", "h-4 w-4")} />
+          </Link>
+        </div>
+        <div class="p-6 rounded-xl border bg-card hover:shadow-lg transition-all">
+          <Fragment set:html={icon("award", "h-12 w-12 text-secondary mb-4")} />
+          <h3 class="text-xl font-semibold mb-2">Karya Siswa</h3>
+          <p class="text-muted-foreground">
+            Portofolio dan karya inovatif siswa dari berbagai program keahlian.
+          </p>
+          <Link href="/blud/karya-siswa" class="text-secondary font-medium mt-4 inline-flex items-center gap-1 hover:gap-2 transition-all">
+            Lihat Karya <Fragment set:html={icon("arrow-right", "h-4 w-4")} />
+          </Link>
+        </div>
+        <div class="p-6 rounded-xl border bg-card hover:shadow-lg transition-all">
+          <Fragment set:html={icon("users", "h-12 w-12 text-secondary mb-4")} />
+          <h3 class="text-xl font-semibold mb-2">Pembelajaran Nyata</h3>
+          <p class="text-muted-foreground">
+            Pengalaman bisnis riil sebagai bagian dari pembelajaran berbasis produksi.
+          </p>
+          <Link href="/blud/tentang" class="text-secondary font-medium mt-4 inline-flex items-center gap-1 hover:gap-2 transition-all">
+            Pelajari Lebih <Fragment set:html={icon("arrow-right", "h-4 w-4")} />
+          </Link>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Unit Preview -->
+  <section class="py-16 bg-muted/50">
+    <div class="container">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="text-2xl font-bold">Unit Unggulan</h2>
+        <Link href="/blud/unit" class="text-secondary font-medium hover:underline">
+          Lihat Semua →
+        </Link>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        {
+          units.map((unit) => (
+            <a
+              href={`/blud/${unit.slug}`}
+              class="p-6 rounded-xl border bg-card hover:shadow-md transition-all block"
+            >
+              <h3 class="font-semibold text-lg">{unit.name}</h3>
+              <p class="text-sm text-muted-foreground">{unit.category}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <BludFooter />
+</BaseLayout>

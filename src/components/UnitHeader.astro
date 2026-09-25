@@ -1,0 +1,52 @@
+---
+import Link from "./Link.astro";
+import { icon } from "./icons";
+
+interface Props {
+  unitSlug: string;
+  unitName: string;
+  hasServices?: boolean;
+}
+
+const { unitSlug, unitName, hasServices = true } = Astro.props;
+const path = Astro.url.pathname;
+const nav = [
+  { href: `/blud/${unitSlug}`, label: "Beranda", exact: true },
+  { href: `/blud/${unitSlug}/katalog`, label: "Katalog", exact: false },
+  { href: `/blud/${unitSlug}/layanan`, label: "Layanan", exact: false },
+  { href: `/blud/${unitSlug}/portofolio`, label: "Portofolio", exact: false },
+  { href: `/blud/${unitSlug}/kontak`, label: "Kontak", exact: false },
+];
+---
+
+<header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="container flex h-16 items-center justify-between">
+    <div class="flex items-center gap-4">
+      <Link
+        href="/blud/unit"
+        class="text-sm text-muted-foreground hover:text-primary inline-flex items-center gap-1"
+      >
+        <Fragment set:html={icon("arrow-left", "h-4 w-4")} />
+        Semua Unit
+      </Link>
+      <div class="h-6 w-px bg-border"></div>
+      <span class="text-lg font-bold text-primary">{unitName}</span>
+    </div>
+    <nav class="hidden md:flex items-center gap-6">
+      {nav.map((item) => (
+        <Link
+          href={item.href}
+          class:list={[
+            "text-sm font-medium hover:text-primary",
+            (item.exact ? path === item.href : path.startsWith(item.href)) && "text-primary",
+          ]}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </nav>
+    <Link href="/blud" class="text-sm text-muted-foreground hover:text-primary">
+      Kembali ke BLUD-Mart
+    </Link>
+  </div>
+</header>

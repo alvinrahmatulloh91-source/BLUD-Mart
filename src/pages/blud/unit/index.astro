@@ -1,0 +1,74 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BludHeader from "@/components/BludHeader.astro";
+import BludFooter from "@/components/BludFooter.astro";
+import Link from "@/components/Link.astro";
+import { icon } from "@/components/icons";
+import { getPublicUnits, getUnitProducts, getUnitServices } from "@/lib/data/units";
+
+const units = await getPublicUnits();
+
+const unitsWithCounts = await Promise.all(
+  units.map(async (unit) => {
+    const [products, services] = await Promise.all([
+      getUnitProducts(unit.id),
+      getUnitServices(unit.id),
+    ]);
+    return { ...unit, productCount: products.length, serviceCount: services.length };
+  }),
+);
+---
+
+<BaseLayout title="Semua Unit BLUD - SKANSABA BLUD-MART">
+  <BludHeader />
+
+  <main class="py-12">
+    <div class="container">
+      <div class="mb-8">
+        <Link href="/blud" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-4">
+          <Fragment set:html={icon("arrow-left", "h-4 w-4")} />
+          Kembali ke Beranda BLUD
+        </Link>
+        <h1 class="text-4xl font-bold mb-4">Semua Unit BLUD</h1>
+        <p class="text-xl text-muted-foreground max-w-3xl">
+          Pilih unit untuk melihat website, layanan, katalog, dan portofolio unit
+          tersebut.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          unitsWithCounts.map((unit) => (
+            <div class="rounded-xl border bg-card p-6 hover:shadow-lg transition-all flex flex-col">
+              <div class="mb-4">
+                <span class="text-xs font-medium px-2 py-1 rounded-full bg-secondary/10 text-secondary">
+                  {unit.category}
+                </span>
+              </div>
+              <h3 class="text-xl font-semibold mb-2">{unit.name}</h3>
+              <p class="text-sm text-muted-foreground mb-4 line-clamp-2 flex-1">
+                {unit.description}
+              </p>
+              <div class="flex gap-4 text-xs text-muted-foreground mb-4">
+                {unit.serviceCount > 0 && <span>{unit.serviceCount} Layanan</span>}
+                {unit.productCount > 0 && <span>{unit.productCount} Produk</span>}
+                {unit.serviceCount === 0 && unit.productCount === 0 && (
+                  <span>Informasi segera hadir</span>
+                )}
+              </div>
+              <Link
+                href={`/blud/${unit.slug}`}
+                class="inline-flex items-center gap-2 w-full justify-center bg-primary text-white px-4 py-2 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              >
+                Masuk ke Website Unit
+                <Fragment set:html={icon("external-link", "h-4 w-4")} />
+              </Link>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+
+  <BludFooter />
+</BaseLayout>

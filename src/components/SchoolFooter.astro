@@ -1,0 +1,44 @@
+---
+import Link from "./Link.astro";
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t py-12 bg-muted/50">
+  <div class="container">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="font-bold text-lg mb-4 text-primary">SMKN 1 BANTUL</h3>
+        <p class="text-sm text-muted-foreground">
+          Sekolah Menengah Kejuruan Unggulan di Kabupaten Bantul
+        </p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Tautan</h4>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li><Link href="/profil" class="hover:text-primary">Profil</Link></li>
+          <li><Link href="/program-keahlian" class="hover:text-primary">Program Keahlian</Link></li>
+          <li><Link href="/blud" class="hover:text-secondary">BLUD-Mart</Link></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Kontak</h4>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li>Jl. Pramuka No. 27 Bantul</li>
+          <li>info@smkn1bantul.sch.id</li>
+          <li>(0274) 123456</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Sosial Media</h4>
+        <ul class="space-y-2 text-sm text-muted-foreground">
+          <li>Facebook</li>
+          <li>Instagram</li>
+          <li>YouTube</li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
+      © {year} SMKN 1 BANTUL. All rights reserved.
+    </div>
+  </div>
+</footer>
