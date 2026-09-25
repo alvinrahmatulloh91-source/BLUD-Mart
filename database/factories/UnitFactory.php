@@ -15,7 +15,7 @@ class UnitFactory extends Factory
 
         return [
             'name' => $name,
-            'slug' => str($name)->slug()->append('-' . fake()->unique()->numberBetween(1, 999)),
+            'slug' => str($name)->slug()->append('-' . fake()->unique()->numberBetween(1, 999))->toString(),
             'category' => fake()->randomElement(['Digital Printing / Produksi', 'IT & Digital Service', 'Retail & Merchandise']),
             'description' => fake()->sentence(),
             'logo' => null,

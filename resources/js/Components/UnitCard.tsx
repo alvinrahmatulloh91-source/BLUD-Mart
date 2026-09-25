@@ -1,19 +1,8 @@
 import { Badge } from '@/Components/ui/badge';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
-import { ExternalLink, Package, Clock } from 'lucide-react';
-import { Building2 } from 'lucide-react';
-
-export interface UnitData {
-    id: number;
-    name: string;
-    slug: string;
-    category: string;
-    description: string | null;
-    logo: string | null;
-    cover_image: string | null;
-    website_url: string | null;
-}
+import type { UnitData } from '@/types/Unit';
+import { Building2, Clock, ExternalLink } from 'lucide-react';
 
 interface UnitCardProps {
     unit: UnitData;

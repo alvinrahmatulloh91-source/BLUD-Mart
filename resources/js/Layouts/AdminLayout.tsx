@@ -1,5 +1,5 @@
 import { Button } from '@/Components/ui/button';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
+import { Head, Link, router, usePage } from '@inertiajs/react';
 import { ExternalLink, LayoutDashboard, LogOut } from 'lucide-react';
 import type { ReactNode } from 'react';
 
@@ -9,10 +9,9 @@ interface AdminLayoutProps {
 }
 
 export function AdminLayout({ title, children }: AdminLayoutProps) {
-    const { auth } = usePage().props;
-    const { post } = useForm();
+    const { auth } = usePage<{ auth: { user: { name: string } | null } }>().props;
 
-    const logout = () => post(route('logout'));
+    const logout = () => router.post('/admin/logout');
 
     return (
         <div className="flex min-h-screen flex-col bg-gray-50">

@@ -4,13 +4,11 @@ import { Button } from '@/Components/ui/button';
 import { Badge } from '@/Components/ui/badge';
 import { Card, CardContent } from '@/Components/ui/card';
 import { ArrowRight, Building2, GraduationCap, HandCoins, LayoutGrid } from 'lucide-react';
-import type { UnitData } from '@/Components/UnitCard';
+import type { UnitData } from '@/types/Unit';
 
 interface LandingProps {
     units: UnitData[];
 }
-
-const DESCRIPTION_SENTENCES = 3;
 
 export default function Landing({ units }: LandingProps) {
     return (

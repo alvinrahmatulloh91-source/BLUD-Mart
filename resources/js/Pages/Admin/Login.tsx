@@ -20,7 +20,7 @@ export default function AdminLogin({ status }: { status?: string }) {
 
     const submit = (e: FormEvent) => {
         e.preventDefault();
-        post(route('login.attempt'));
+        post('/admin/login');
     };
 
     return (

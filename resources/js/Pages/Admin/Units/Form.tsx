@@ -57,9 +57,9 @@ export default function AdminUnitForm({ unit }: FormProps) {
     const submit = (e: React.FormEvent) => {
         e.preventDefault();
         if (isEdit) {
-            post(route('admin.units.update', unit!.id), { forceFormData: true });
+            post(`/admin/units/${unit!.id}`, { forceFormData: true });
         } else {
-            post(route('admin.units.store'));
+            post('/admin/units');
         }
     };
 
@@ -240,7 +240,7 @@ export default function AdminUnitForm({ unit }: FormProps) {
                     )}
 
                     <div className="flex items-center justify-end gap-3">
-                        <a href={route('admin.units.index')}>
+                        <a href="/admin/units">
                             <Button variant="outline" type="button">
                                 Batal
                             </Button>

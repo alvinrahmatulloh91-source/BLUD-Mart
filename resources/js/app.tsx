@@ -1,5 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react';
-import { createRoot, type ReactNode } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
+import type { ComponentType } from 'react';
 import '../css/app.css';
 
 const appName = 'Skansaba BLUD-Mart';
@@ -12,7 +13,7 @@ createInertiaApp({
         if (!page) {
             throw new Error(`Page not found: ${name}`);
         }
-        return page as { default: React.ComponentType };
+        return (page as { default: ComponentType }).default;
     },
     setup({ el, App, props }) {
         const root = createRoot(el);

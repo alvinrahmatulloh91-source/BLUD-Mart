@@ -3,7 +3,7 @@ import { Alert } from '@/Components/ui/alert';
 import { Badge } from '@/Components/ui/badge';
 import { Button } from '@/Components/ui/button';
 import { Card, CardContent } from '@/Components/ui/card';
-import { useForm, usePage, router } from '@inertiajs/react';
+import { router, usePage } from '@inertiajs/react';
 import { ArrowDown, ArrowUp, Globe, Pencil, Plus, Trash2 } from 'lucide-react';
 
 interface AdminUnit {
@@ -19,18 +19,17 @@ interface AdminUnit {
     sort_order: number;
 }
 
-interface PageProps {
+interface PageProps extends Record<string, unknown> {
     units: AdminUnit[];
     flash?: { success?: string };
 }
 
 export default function AdminUnitsIndex() {
-    const { units, flash } = usePage<PageProps & { props: PageProps }>().props;
-    const { post, processing } = useForm();
+    const { units, flash } = usePage<PageProps>().props;
 
     const toggleActive = (unit: AdminUnit) => {
-        router.post(
-            route('admin.units.update', unit.id),
+        router.put(
+            `/admin/units/${unit.id}`,
             {
                 name: unit.name,
                 slug: unit.slug,
@@ -38,7 +37,6 @@ export default function AdminUnitsIndex() {
                 description: unit.description ?? '',
                 website_url: unit.website_url ?? '',
                 is_active: !unit.is_active,
-                _method: 'put',
             },
             { preserveScroll: true },
         );
@@ -52,12 +50,12 @@ export default function AdminUnitsIndex() {
         const ids = units.map((u) => u.id);
         [ids[index], ids[targetIndex]] = [ids[targetIndex], ids[index]];
 
-        router.post(route('admin.units.reorder'), { ids }, { preserveScroll: true });
+        router.post('/admin/units/reorder', { ids }, { preserveScroll: true });
     };
 
     const destroy = (unit: AdminUnit) => {
         if (confirm(`Hapus unit "${unit.name}"? Tindakan ini tidak dapat dibatalkan.`)) {
-            router.delete(route('admin.units.destroy', unit.id), { preserveScroll: true });
+            router.delete(`/admin/units/${unit.id}`, { preserveScroll: true });
         }
     };
 
@@ -70,7 +68,7 @@ export default function AdminUnitsIndex() {
                         Tambah, ubah, dan atur urutan Unit Produksi pada portal.
                     </p>
                 </div>
-                <a href={route('admin.units.create')}>
+                <a href="/admin/units/create">
                     <Button className="gap-2">
                         <Plus className="h-4 w-4" aria-hidden="true" />
                         Tambah Unit
@@ -139,7 +137,7 @@ export default function AdminUnitsIndex() {
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => move(unit, 'up')}
-                                    disabled={index === 0 || processing}
+                                    disabled={index === 0}
                                     aria-label={`Naikkan ${unit.name}`}
                                 >
                                     <ArrowUp className="h-4 w-4" aria-hidden="true" />
@@ -148,12 +146,12 @@ export default function AdminUnitsIndex() {
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => move(unit, 'down')}
-                                    disabled={index === units.length - 1 || processing}
+                                    disabled={index === units.length - 1}
                                     aria-label={`Turunkan ${unit.name}`}
                                 >
                                     <ArrowDown className="h-4 w-4" aria-hidden="true" />
                                 </Button>
-                                <a href={route('admin.units.edit', unit.id)}>
+                                <a href={`/admin/units/${unit.id}/edit`}>
                                     <Button variant="outline" size="sm" className="gap-1.5">
                                         <Pencil className="h-3.5 w-3.5" aria-hidden="true" />
                                         Edit

@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * Placeholder unit test suite — fitur diuji pada tests/Feature.
      */
-    public function test_that_true_is_true(): void
+    public function test_placeholder(): void
     {
         $this->assertTrue(true);
     }

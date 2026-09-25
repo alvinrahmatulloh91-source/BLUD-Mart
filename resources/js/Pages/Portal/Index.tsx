@@ -1,6 +1,6 @@
 import { PublicLayout } from '@/Components/PublicLayout';
 import { UnitGrid } from '@/Components/UnitGrid';
-import type { UnitData } from '@/Components/UnitCard';
+import type { UnitData } from '@/types/Unit';
 
 interface PortalProps {
     units: UnitData[];

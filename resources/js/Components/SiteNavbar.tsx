@@ -14,7 +14,6 @@ const navItems = [
 export function SiteNavbar() {
     const [open, setOpen] = useState(false);
     const { url } = usePage();
-    const { auth } = usePage().props;
 
     const isActive = (href: string) =>
         href === '/' ? url === '/' : url.startsWith(href);

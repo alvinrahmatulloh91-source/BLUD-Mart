@@ -2,7 +2,7 @@ import { PublicLayout } from '@/Components/PublicLayout';
 import { UnitGrid } from '@/Components/UnitGrid';
 import { Card, CardContent } from '@/Components/ui/card';
 import { CheckCircle2, Landmark, Network, Target } from 'lucide-react';
-import type { UnitData } from '@/Components/UnitCard';
+import type { UnitData } from '@/types/Unit';
 
 interface AboutProps {
     units: UnitData[];

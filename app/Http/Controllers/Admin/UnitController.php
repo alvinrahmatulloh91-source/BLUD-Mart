@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUnitRequest;
 use App\Http\Requests\UpdateUnitRequest;
 use App\Models\Unit;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -30,6 +31,8 @@ class UnitController extends Controller
                     'logo', 'cover_image', 'website_url', 'is_active', 'sort_order',
                 ]),
         ]);
+    }
+
     public function create(): Response
     {
         return Inertia::render('Admin/Units/Form', ['unit' => null]);

@@ -14,9 +14,8 @@
         "noEmit": true,
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "types": ["vite/client"],
-        "baseUrl": ".",
         "paths": {
-            "@/*": ["resources/js/*"]
+            "@/*": ["./resources/js/*"]
         }
     },
     "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"]

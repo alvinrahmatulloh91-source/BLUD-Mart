@@ -1,4 +1,5 @@
-import { UnitCard, type UnitData } from '@/Components/UnitCard';
+import { UnitCard } from '@/Components/UnitCard';
+import type { UnitData } from '@/types/Unit';
 
 interface UnitGridProps {
     units: UnitData[];

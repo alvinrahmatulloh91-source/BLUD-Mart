@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     // ==================== ADMIN: KELOLA UNIT ====================
     Route::prefix('admin')->name('admin.')->middleware('can:manage-units')->group(function () {
+        Route::post('units/reorder', [AdminUnitController::class, 'reorder'])->name('units.reorder');
         Route::resource('units', AdminUnitController::class)
             ->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
     });
