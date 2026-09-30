@@ -28,7 +28,6 @@ class LandingController extends Controller
                 'category',
                 'description',
                 'logo',
-                'cover_image',
                 'website_url',
                 'sort_order',
             ]);

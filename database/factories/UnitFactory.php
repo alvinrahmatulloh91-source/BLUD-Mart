@@ -19,7 +19,6 @@ class UnitFactory extends Factory
             'category' => fake()->randomElement(['Digital Printing / Produksi', 'IT & Digital Service', 'Retail & Merchandise']),
             'description' => fake()->sentence(),
             'logo' => null,
-            'cover_image' => null,
             'website_url' => null,
             'is_active' => true,
             'sort_order' => fake()->numberBetween(0, 100),

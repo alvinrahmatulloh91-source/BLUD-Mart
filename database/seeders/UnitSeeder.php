@@ -5,66 +5,47 @@ namespace Database\Seeders;
 use App\Models\Unit;
 use Illuminate\Database\Seeder;
 
-/**
- * Data Unit Produksi SMKN 1 Bantul.
- *
- * Sumber: data unit yang sudah tersedia dalam project
- * (diwariskan dari platform sebelumnya). Jangan mengarang unit baru.
- */
+/** Seed only the Unit Produksi names supplied in the project brief. */
 class UnitSeeder extends Seeder
 {
     public function run(): void
     {
-        $units = [
-            [
-                'name' => 'K-Tuba Digital Printing',
-                'slug' => 'k-tuba-digital-printing',
-                'category' => 'Digital Printing / Produksi',
-                'description' => 'Layanan digital printing profesional untuk kebutuhan sekolah dan umum. Banner, poster, brosur, dan berbagai media cetak lainnya.',
-                'sort_order' => 1,
-            ],
-            [
-                'name' => 'Solusi Sistem Digital (SSD)',
-                'slug' => 'solusi-sistem-digital',
-                'category' => 'Pengembangan Perangkat Lunak',
-                'description' => 'Pengembangan perangkat lunak dan sistem informasi. Website, aplikasi, dan solusi digital untuk berbagai kebutuhan.',
-                'sort_order' => 2,
-            ],
-            [
-                'name' => 'Jari Manis',
-                'slug' => 'jari-manis',
-                'category' => 'Kreatif & Desain',
-                'description' => 'Unit produksi kreatif dengan fokus pada karya seni dan desain.',
-                'sort_order' => 3,
-            ],
-            [
-                'name' => 'Skansaba IT Solution',
-                'slug' => 'skansaba-it-solution',
-                'category' => 'IT & Digital Service',
-                'description' => 'Layanan IT dan digital service. Pembuatan website, sistem informasi, konsultasi IT, dan solusi digital.',
-                'sort_order' => 4,
-            ],
-            [
-                'name' => 'LKM Mitra Siswa Abadi',
-                'slug' => 'lkm-mitra-siswa-abadi',
-                'category' => 'Keuangan & Perbankan',
-                'description' => 'Lembaga Keuangan Mikro untuk siswa. Layanan keuangan dan pembiayaan untuk kebutuhan produktif.',
-                'sort_order' => 5,
-            ],
-            [
-                'name' => 'SKANSABA STORE',
-                'slug' => 'skansaba-store',
-                'category' => 'Retail & Merchandise',
-                'description' => 'Toko merchandise dan produk kreatif sekolah. Produk non-makanan, atribut sekolah, dan produk kreatif siswa.',
-                'sort_order' => 6,
-            ],
+        $names = [
+            ['K-Tuba Digital Printing', 'Digital Printing / Produksi'],
+            ['Remen Coffee', 'Makanan & Minuman'],
+            ['Skansaba.dev', 'Unit Produksi'],
+            ['Agen Laku BPD DIY', 'Unit Produksi'],
+            ['LKM Mitra Siswa Abadi', 'Unit Produksi'],
+            ['SPOIN', 'Unit Produksi'],
+            ['Kunjungan Sekolah', 'Unit Produksi'],
+            ['Sewa Aset', 'Unit Produksi'],
+            ['NetWare', 'Unit Produksi'],
+            ['IMAGO CREATIVE', 'Unit Produksi'],
+            ['Cafetaria', 'Makanan & Minuman'],
+            ['Skansaba Store', 'Unit Produksi'],
         ];
 
-        foreach ($units as $unit) {
+        $slugs = [];
+
+        foreach ($names as $index => [$name, $category]) {
+            $slug = str($name)->slug()->toString();
+            $slugs[] = $slug;
+
             Unit::updateOrCreate(
-                ['slug' => $unit['slug']],
-                $unit + ['is_active' => true, 'website_url' => null]
+                ['slug' => $slug],
+                [
+                    'name' => $name,
+                    'category' => $category,
+                    'description' => null,
+                    'logo' => null,
+                    'website_url' => null,
+                    'is_active' => true,
+                    'sort_order' => $index + 1,
+                ],
             );
         }
+
+        // Keep old records out of the central portal without deleting stored data.
+        Unit::query()->whereNotIn('slug', $slugs)->update(['is_active' => false]);
     }
 }

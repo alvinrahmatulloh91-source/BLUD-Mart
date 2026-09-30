@@ -28,7 +28,7 @@ class UnitController extends Controller
                 ->ordered()
                 ->get([
                     'id', 'name', 'slug', 'category', 'description',
-                    'logo', 'cover_image', 'website_url', 'is_active', 'sort_order',
+                    'logo', 'website_url', 'is_active', 'sort_order',
                 ]),
         ]);
     }
@@ -43,7 +43,6 @@ class UnitController extends Controller
         $data = $request->validated();
         $data['slug'] = $request->filled('slug') ? Str::slug($request->input('slug')) : Str::slug($request->input('name'));
         $data['logo'] = $this->storeImage($request, 'logo');
-        $data['cover_image'] = $this->storeImage($request, 'cover_image');
         $data['is_active'] = $request->boolean('is_active');
 
         Unit::create($data);
@@ -72,14 +71,6 @@ class UnitController extends Controller
             $data['logo'] = $newLogo;
         }
 
-        if ($request->boolean('remove_cover_image')) {
-            $this->deleteImage($unit->cover_image);
-            $data['cover_image'] = null;
-        } elseif ($newCover = $this->storeImage($request, 'cover_image')) {
-            $this->deleteImage($unit->cover_image);
-            $data['cover_image'] = $newCover;
-        }
-
         $data['is_active'] = $request->boolean('is_active');
 
         $unit->update($data);
@@ -90,7 +81,6 @@ class UnitController extends Controller
     public function destroy(Unit $unit): RedirectResponse
     {
         $this->deleteImage($unit->logo);
-        $this->deleteImage($unit->cover_image);
         $unit->delete();
 
         return redirect()->route('admin.units.index')->with('success', 'Unit berhasil dihapus.');

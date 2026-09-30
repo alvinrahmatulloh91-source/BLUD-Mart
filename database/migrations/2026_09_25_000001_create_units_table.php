@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('category');
             $table->text('description')->nullable();
             $table->string('logo')->nullable();
-            $table->string('cover_image')->nullable();
             // Boleh NULL: website UP belum harus tersedia.
             // Dipakai hanya sebagai external link ketika nanti sudah diisi.
             $table->string('website_url')->nullable();

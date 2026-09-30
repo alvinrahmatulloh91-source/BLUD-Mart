@@ -36,9 +36,13 @@ export function UnitCard({ unit }: UnitCardProps) {
 
                 <h3 className="text-lg font-semibold text-gray-900">{unit.name}</h3>
 
-                {unit.description && (
+                {unit.description ? (
                     <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-500">
                         {unit.description}
+                    </p>
+                ) : (
+                    <p className="mt-2 text-sm leading-relaxed text-gray-500">
+                        Informasi unit akan diperbarui.
                     </p>
                 )}
 
@@ -52,7 +56,7 @@ export function UnitCard({ unit }: UnitCardProps) {
                     ) : (
                         <>
                             <Clock className="h-3.5 w-3.5" />
-                            Website unit segera tersedia
+                            Website Segera Hadir
                         </>
                     )}
                 </p>
@@ -68,7 +72,7 @@ export function UnitCard({ unit }: UnitCardProps) {
                         </a>
                     ) : (
                         <Button variant="outline" disabled className="w-full gap-1.5">
-                            Masuk ke Website Unit
+                            Website Segera Hadir
                             <ExternalLink className="h-4 w-4" />
                         </Button>
                     )}

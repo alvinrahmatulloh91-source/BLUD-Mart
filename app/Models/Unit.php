@@ -16,7 +16,6 @@ class Unit extends Model
         'category',
         'description',
         'logo',
-        'cover_image',
         'website_url',
         'is_active',
         'sort_order',

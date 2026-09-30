@@ -12,7 +12,6 @@ interface AdminUnit {
     category: string;
     description: string | null;
     logo: string | null;
-    cover_image: string | null;
     website_url: string | null;
     is_active: boolean;
 }
@@ -36,9 +35,7 @@ export default function AdminUnitForm({ unit }: FormProps) {
         website_url: string;
         is_active: boolean;
         logo: File | null;
-        cover_image: File | null;
         remove_logo: boolean;
-        remove_cover_image: boolean;
         _method?: string;
     }>({
         name: unit?.name ?? '',
@@ -48,9 +45,7 @@ export default function AdminUnitForm({ unit }: FormProps) {
         website_url: unit?.website_url ?? '',
         is_active: unit?.is_active ?? true,
         logo: null,
-        cover_image: null,
         remove_logo: false,
-        remove_cover_image: false,
         ...(isEdit ? { _method: 'put' } : {}),
     });
 
@@ -199,38 +194,6 @@ export default function AdminUnitForm({ unit }: FormProps) {
                             {errors.logo && <p className="mt-1 text-xs text-red-600">{errors.logo}</p>}
                         </div>
 
-                        <div className="mt-4">
-                            <Label htmlFor="cover_image">Gambar Sampul</Label>
-                            {unit?.cover_image && !data.remove_cover_image && (
-                                <div className="mb-2 flex items-center gap-3">
-                                    <img
-                                        src={`/storage/${unit.cover_image}`}
-                                        alt={`Sampul ${unit.name}`}
-                                        className="h-12 w-20 rounded-lg border border-gray-100 object-cover"
-                                    />
-                                    <label className="flex items-center gap-1.5 text-xs text-red-600">
-                                        <input
-                                            type="checkbox"
-                                            checked={data.remove_cover_image}
-                                            onChange={(e) =>
-                                                setData('remove_cover_image', e.target.checked)
-                                            }
-                                            className="h-3.5 w-3.5 rounded border-gray-300"
-                                        />
-                                        Hapus sampul
-                                    </label>
-                                </div>
-                            )}
-                            <Input
-                                id="cover_image"
-                                type="file"
-                                accept="image/png,image/jpeg,image/webp"
-                                onChange={(e) => setData('cover_image', e.target.files?.[0] ?? null)}
-                            />
-                            {errors.cover_image && (
-                                <p className="mt-1 text-xs text-red-600">{errors.cover_image}</p>
-                            )}
-                        </div>
                     </div>
 
                     {Object.keys(errors).length > 0 && (

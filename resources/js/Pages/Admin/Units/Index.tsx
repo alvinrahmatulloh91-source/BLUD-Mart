@@ -13,7 +13,6 @@ interface AdminUnit {
     category: string;
     description: string | null;
     logo: string | null;
-    cover_image: string | null;
     website_url: string | null;
     is_active: boolean;
     sort_order: number;
