@@ -1,0 +1,6 @@
+import { SchoolLayout } from '@/Components/SchoolLayout';
+import { ArrowLeft, ClipboardList, GraduationCap } from 'lucide-react';
+
+export default function PPDBIndex() {
+    return <SchoolLayout title="Informasi PPDB — SMK Negeri 1 Bantul" description="Informasi penerimaan peserta didik baru SMK Negeri 1 Bantul."><section className="bg-primary-950 text-white"><div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8"><a href="/" className="inline-flex items-center gap-2 text-sm text-blue-100"><ArrowLeft className="h-4 w-4"/> Beranda sekolah</a><div className="mt-8 flex items-center gap-4"><GraduationCap className="h-10 w-10 text-orange-300"/><div><p className="text-sm font-bold uppercase tracking-widest text-orange-300">Penerimaan Peserta Didik Baru</p><h1 className="mt-1 text-4xl font-bold">Informasi PPDB</h1></div></div></div></section><section className="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8"><div className="rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-8 text-center sm:p-12"><ClipboardList className="mx-auto h-10 w-10 text-primary-700"/><h2 className="mt-5 text-2xl font-bold">Website PPDB Segera Hadir</h2><p className="mx-auto mt-3 max-w-xl leading-7 text-slate-600">Informasi jalur, jadwal, dan petunjuk penerimaan peserta didik baru akan ditampilkan setelah kanal PPDB resmi tersedia.</p></div></section></SchoolLayout>;
+}

@@ -1,12 +1,12 @@
 import { Button } from '@/Components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link, usePage } from '@inertiajs/react';
-import { ExternalLink, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, type ReactNode } from 'react';
 
 const navItems = [
-    { label: 'Beranda BLUD', href: '/' },
-    { label: 'Semua Unit', href: '/semua-unit' },
+    { label: 'Beranda BLUD', href: '/blud' },
+    { label: 'Semua Unit', href: '/blud/units' },
     { label: 'Karya Siswa', href: '/karya-siswa' },
     { label: 'Tentang BLUD', href: '/tentang-blud' },
 ];
@@ -16,26 +16,19 @@ export function SiteNavbar() {
     const { url } = usePage();
 
     const isActive = (href: string) =>
-        href === '/' ? url === '/' : url.startsWith(href);
+        href === '/blud' ? url === '/blud' : url.startsWith(href);
 
     return (
         <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur">
             <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
                 {/* Logo + identitas */}
-                <Link href="/" className="flex items-center gap-3">
+                <Link href="/blud" className="flex items-center gap-3">
                     <img
                         src="/images/logo-skansaba.svg"
                         alt="Logo SMKN 1 Bantul"
                         className="h-10 w-10 rounded-lg"
                     />
-                    <span className="flex flex-col leading-tight">
-                        <span className="text-base font-bold text-primary-900">
-                            SKANSABA BLUD-MART
-                        </span>
-                        <span className="text-xs text-gray-500">
-                            Portal Digital BLUD SMKN 1 Bantul
-                        </span>
-                    </span>
+                    <span className="flex flex-col leading-tight"><span className="text-base font-bold text-primary-900">SKANSABA BLUD-MART</span><span className="text-xs text-gray-500">Portal Digital Unit Produksi SMKN 1 Bantul</span></span>
                 </Link>
 
                 {/* Menu desktop */}
@@ -54,17 +47,7 @@ export function SiteNavbar() {
                             {item.label}
                         </Link>
                     ))}
-                    <a
-                        href="https://smkn1bantul.sch.id/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-2"
-                    >
-                        <Button size="sm" className="gap-1.5">
-                            Web SMKN 1 Bantul
-                            <ExternalLink className="h-3.5 w-3.5" />
-                        </Button>
-                    </a>
+                    <Link href="/" className="ml-2"><Button size="sm">Beranda Sekolah</Button></Link>
                 </nav>
 
                 {/* Hamburger mobile */}
@@ -101,17 +84,7 @@ export function SiteNavbar() {
                                 {item.label}
                             </Link>
                         ))}
-                        <a
-                            href="https://smkn1bantul.sch.id/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-2"
-                        >
-                            <Button className="w-full gap-1.5">
-                                Web SMKN 1 Bantul
-                                <ExternalLink className="h-4 w-4" />
-                            </Button>
-                        </a>
+                        <Link href="/" onClick={() => setOpen(false)} className="mt-2"><Button className="w-full">Beranda Sekolah</Button></Link>
                     </div>
                 </nav>
             )}

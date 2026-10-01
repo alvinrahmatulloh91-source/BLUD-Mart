@@ -6,19 +6,18 @@
 
         <title inertia>{{ $title ?? config('app.name', 'Skansaba BLUD-Mart') }}</title>
 
-        <meta name="description" inertia="{{ $description ?? 'Portal terintegrasi Unit Produksi SMKN 1 Bantul.' }}" />
+        <meta name="description" inertia="{{ $description ?? 'SMK Negeri 1 Bantul — pendidikan vokasi, kompetensi, karakter, dan karya.' }}" />
         <meta name="author" content="SMKN 1 Bantul" />
 
         {{-- Open Graph --}}
         <meta property="og:type" content="website" inertia />
-        <meta property="og:site_name" content="Skansaba BLUD-Mart" />
+        <meta property="og:site_name" content="SMK Negeri 1 Bantul" />
         <meta property="og:title" inertia="{{ $title ?? config('app.name', 'Skansaba BLUD-Mart') }}" />
-        <meta property="og:description" inertia="{{ $description ?? 'Portal terintegrasi Unit Produksi SMKN 1 Bantul.' }}" />
+        <meta property="og:description" inertia="{{ $description ?? 'SMK Negeri 1 Bantul — pendidikan vokasi, kompetensi, karakter, dan karya.' }}" />
         <meta property="og:url" inertia="{{ url()->current() }}" />
-        <meta property="og:image" content="{{ asset('images/og-image.png') }}" />
-
-        {{-- Favicon --}}
-        <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}" />
+        <meta property="og:image" content="{{ asset('images/logo-skansaba.svg') }}" />
+        <meta name="twitter:card" content="summary" />
+        <link rel="canonical" href="{{ url()->current() }}" />
 
         {{-- Fonts --}}
         <link rel="preconnect" href="https://fonts.bunny.net" />

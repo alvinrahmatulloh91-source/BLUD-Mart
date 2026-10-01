@@ -1,14 +1,8 @@
 import { PublicLayout } from '@/Components/PublicLayout';
-import { UnitGrid } from '@/Components/UnitGrid';
 import { Card, CardContent } from '@/Components/ui/card';
 import { CheckCircle2, Landmark, Network, Target } from 'lucide-react';
-import type { UnitData } from '@/types/Unit';
 
-interface AboutProps {
-    units: UnitData[];
-}
-
-export default function AboutIndex({ units }: AboutProps) {
+export default function AboutIndex() {
     return (
         <PublicLayout
             title="Tentang BLUD — Skansaba BLUD-Mart"
@@ -77,7 +71,7 @@ export default function AboutIndex({ units }: AboutProps) {
                         {[
                             'Satu website utama + satu portal terintegrasi untuk seluruh Unit Produksi.',
                             'Portal menjadi pusat informasi dan penghubung menuju website masing-masing unit.',
-                            'Setiap Unit Produksi mengembangkan website sendiri secara bertahap.',
+                            'Portal menautkan website eksternal Unit Produksi ketika alamatnya tersedia.',
                             'Transparan, informatif, dan mendukung pembelajaran berbasis praktik.',
                         ].map((item) => (
                             <li key={item} className="flex items-start gap-3 text-gray-600">
@@ -89,18 +83,6 @@ export default function AboutIndex({ units }: AboutProps) {
                 </div>
             </section>
 
-            {/* Daftar unit */}
-            <section className="py-12 lg:py-16">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-2xl font-bold text-gray-900">Unit Produksi BLUD</h2>
-                    <p className="mt-2 text-gray-600">
-                        Unit Produksi yang saat ini tergabung dalam portal.
-                    </p>
-                    <div className="mt-8">
-                        <UnitGrid units={units} />
-                    </div>
-                </div>
-            </section>
         </PublicLayout>
     );
 }

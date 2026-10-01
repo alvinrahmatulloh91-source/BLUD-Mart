@@ -17,6 +17,9 @@ export function PublicLayout({ title, description, children }: PublicLayoutProps
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description ?? 'Portal terintegrasi Unit Produksi SMKN 1 Bantul.'} />
                 <meta property="og:type" content="website" />
+                <meta property="og:site_name" content="Skansaba BLUD-Mart — SMKN 1 Bantul" />
+                <meta property="og:url" content={`${window.location.origin}${window.location.pathname}`} />
+                <meta name="twitter:card" content="summary" />
                 <link rel="canonical" href={`${window.location.origin}${window.location.pathname}`} />
             </Head>
             <SiteNavbar />

@@ -25,27 +25,32 @@ class UnitSeeder extends Seeder
             ['Skansaba Store', 'Unit Produksi'],
         ];
 
-        $slugs = [];
-
         foreach ($names as $index => [$name, $category]) {
             $slug = str($name)->slug()->toString();
-            $slugs[] = $slug;
+            $description = $name === 'K-Tuba Digital Printing'
+                ? 'Unit Produksi sekolah dalam kategori digital printing dan produksi. Informasi lebih lanjut akan diperbarui.'
+                : 'Unit Produksi SMKN 1 Bantul pada kategori '.$category.'. Informasi lebih lanjut akan diperbarui.';
 
-            Unit::updateOrCreate(
+            $unit = Unit::firstOrCreate(
                 ['slug' => $slug],
                 [
                     'name' => $name,
                     'category' => $category,
-                    'description' => null,
+                    'description' => $description,
                     'logo' => null,
                     'website_url' => null,
                     'is_active' => true,
                     'sort_order' => $index + 1,
                 ],
             );
+
+            if (blank($unit->description)) {
+                $unit->update([
+                    'description' => $description,
+                ]);
+            }
         }
 
-        // Keep old records out of the central portal without deleting stored data.
-        Unit::query()->whereNotIn('slug', $slugs)->update(['is_active' => false]);
+        // Existing records outside this seed list remain intact and retain their status.
     }
 }

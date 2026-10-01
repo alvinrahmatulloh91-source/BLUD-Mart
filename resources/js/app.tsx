@@ -3,10 +3,8 @@ import { createRoot } from 'react-dom/client';
 import type { ComponentType } from 'react';
 import '../css/app.css';
 
-const appName = 'Skansaba BLUD-Mart';
-
 createInertiaApp({
-    title: (title) => (title ? `${title} — ${appName}` : appName),
+    title: (title) => title ?? 'SMK Negeri 1 Bantul',
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.tsx', { eager: true });
         const page = pages[`./Pages/${name}.tsx`];

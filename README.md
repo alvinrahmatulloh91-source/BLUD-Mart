@@ -1,37 +1,43 @@
 # SKANSABA BLUD-MART
 
-Portal pusat BLUD SMKN 1 Bantul. Aplikasi Laravel tunggal menyajikan landing page dan directory Unit Produksi melalui React, TypeScript, Inertia, Tailwind CSS, dan Vite.
+Digital ecosystem website for SMK Negeri 1 Bantul. A single Laravel application serves the school landing page and the central directory for Unit Produksi, with React, TypeScript, Inertia, Tailwind CSS, and Vite.
 
-Website Unit Produksi berada di luar aplikasi. Setiap kartu hanya menyimpan informasi singkat dan `website_url` eksternal opsional; tidak ada halaman unit internal, katalog, keranjang, transaksi, atau checkout.
+## Architecture
 
-## Kebutuhan
+- `/` is the school landing page.
+- `/profil`, `/program-keahlian`, `/informasi`, and `/prestasi` are school information pages.
+- `/blud` introduces Skansaba BLUD-Mart.
+- `/blud/units` lists active Unit Produksi records from MySQL.
+- Unit cards contain summary information and an optional external `website_url`. A missing URL is shown as “Website Segera Hadir”. There are no internal unit detail pages.
+- `/ppdb`, `/bkk`, `/karya-siswa`, and `/tentang-blud` provide informational pages.
+- `/admin/units` is the protected CMS for unit name, category, description, logo, external URL, active state, and ordering.
 
-- PHP 8.3+
+The database contains the `units` table for this portal. The application does not implement product catalogs, carts, checkout, payments, transactions, inventory, or a chatbot.
+
+`_astro_backup/` is an archived legacy project; it is not part of Laravel routing or the active frontend build.
+
+## Requirements
+
+- PHP 8.3+ with `pdo_mysql`
+- MySQL 8+
 - Composer
-- Node.js dan npm
-- MySQL
+- Node.js and npm
 
-Versi framework dan adapter mengikuti `composer.lock` dan `package-lock.json`.
+## Local setup
 
-## Menjalankan lokal
+1. Create a MySQL database named `skansaba_blud`.
+2. Copy `.env.example` to `.env` and set `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD`.
+3. Install dependencies with `composer install` and `npm install`.
+4. Run `php artisan key:generate`.
+5. Run `php artisan migrate --seed`.
+6. Run `npm run dev` and `php artisan serve`.
 
-1. Buat database MySQL bernama `skansaba_blud_mart`.
-2. Salin `.env.example` ke `.env`, lalu isi `DB_HOST`, `DB_PORT`, `DB_DATABASE`, `DB_USERNAME`, dan `DB_PASSWORD`.
-3. Jalankan `composer install` dan `npm install`.
-4. Jalankan `php artisan key:generate`.
-5. Jalankan `php artisan migrate --seed`.
-6. Jalankan `npm run dev` dan `php artisan serve`.
+The seeder inserts the twelve Unit Produksi names already present in the project without overwriting existing logo or website URL edits. Existing units outside the seed list are left unchanged. There is no default admin password; create an authorized admin account before using the CMS.
 
-Seeder Unit Produksi hanya menggunakan dua belas nama yang disediakan pada brief. Deskripsi, logo, dan URL yang tidak tersedia dibiarkan kosong. Unit lama yang bukan bagian dari daftar awal dinonaktifkan, tidak dihapus.
+## Checks
 
-Tidak ada akun admin dengan kata sandi bawaan. Buat akun admin yang berwenang secara manual sebelum memakai CMS unit.
+- `php artisan test`
+- `npx tsc --noEmit`
+- `npm run build`
 
-## Route publik
-
-- `/` — landing page
-- `/semua-unit` — seluruh kartu Unit Produksi
-- `/tentang-blud` — pengenalan BLUD
-- `/karya-siswa` — informasi karya siswa
-- `/sitemap.xml` — sitemap halaman publik
-
-Tidak ada route detail Unit Produksi. Untuk unit tanpa URL, portal menampilkan tombol nonaktif “Website Segera Hadir”. URL yang tersedia membuka situs eksternal dengan `target="_blank"` dan `rel="noopener noreferrer"`.
+Public SEO endpoints: `/sitemap.xml` and `/robots.txt`.
