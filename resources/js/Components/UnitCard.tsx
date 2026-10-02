@@ -9,71 +9,84 @@ interface UnitCardProps {
 }
 
 /**
- * Card Unit Produksi untuk portal.
- * website_url NULL => tombol disabled dengan teks "Website unit segera tersedia".
+ * Card Unit Produksi untuk portal dan landing page.
+ * Menampilkan: logo, nama, kategori, deskripsi, status website, dan tombol website.
+ * Jika website_url NULL => "Website Segera Hadir" dengan button disabled.
+ * Jika website_url terisi => "Masuk ke Website Unit ↗" (eksternal, target="_blank", rel="noopener noreferrer").
+ * TIDAK ADA route internal atau halaman detail unit.
  */
 export function UnitCard({ unit }: UnitCardProps) {
-    const hasWebsite = Boolean(unit.website_url);
+    const hasWebsite = Boolean(unit.website_url && unit.website_url.trim().length > 0);
 
     return (
-        <Card className="group flex h-full flex-col transition-shadow hover:shadow-md">
+        <Card className="group flex h-full flex-col border border-slate-200/90 bg-white transition-all duration-200 hover:border-[#0033A0]/30 hover:shadow-md rounded-xl overflow-hidden">
             <CardContent className="flex flex-1 flex-col p-6">
-                {/* Logo / ikon */}
-                <div className="mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
-                    {unit.logo ? (
-                        <img
-                            src={`/storage/${unit.logo}`}
-                            alt={`Logo ${unit.name}`}
-                            loading="lazy"
-                            className="h-full w-full object-contain p-1.5"
-                        />
+                {/* Header Card: Logo & Category */}
+                <div className="flex items-start justify-between gap-3 mb-4">
+                    <div className="flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-slate-100 bg-blue-50/60 p-2 text-[#0033A0] shadow-xs">
+                        {unit.logo ? (
+                            <img
+                                src={`/storage/${unit.logo}`}
+                                alt={`Logo ${unit.name}`}
+                                loading="lazy"
+                                className="h-full w-full object-contain"
+                            />
+                        ) : (
+                            <Building2 className="h-7 w-7 text-[#0033A0]" aria-hidden="true" />
+                        )}
+                    </div>
+                    <Badge variant="outline" className="border-blue-200 bg-blue-50 text-[#0033A0] text-xs font-semibold py-1 px-2.5">
+                        {unit.category}
+                    </Badge>
+                </div>
+
+                {/* Nama Unit */}
+                <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#0033A0] transition-colors leading-snug">
+                    {unit.name}
+                </h3>
+
+                {/* Deskripsi */}
+                <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-slate-600">
+                    {unit.description || 'Unit Produksi SMKN 1 Bantul. Informasi profil dan layanan lebih lanjut akan segera diperbarui.'}
+                </p>
+
+                {/* Status Website Indicator */}
+                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs font-medium">
+                    {hasWebsite ? (
+                        <span className="flex items-center gap-1.5 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                            <span className="h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
+                            Website Tersedia
+                        </span>
                     ) : (
-                        <Building2 className="h-7 w-7 text-primary-400" aria-hidden="true" />
+                        <span className="flex items-center gap-1.5 text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full">
+                            <Clock className="h-3 w-3" />
+                            Website Segera Hadir
+                        </span>
                     )}
                 </div>
 
-                <Badge className="mb-3 self-start">{unit.category}</Badge>
-
-                <h3 className="text-lg font-semibold text-gray-900">{unit.name}</h3>
-
-                {unit.description ? (
-                    <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-gray-500">
-                        {unit.description}
-                    </p>
-                ) : (
-                    <p className="mt-2 text-sm leading-relaxed text-gray-500">
-                        Informasi unit akan diperbarui.
-                    </p>
-                )}
-
-                {/* Status website */}
-                <p className="mt-3 flex items-center gap-1.5 text-xs text-gray-400">
-                    {hasWebsite ? (
-                        <>
-                            <ExternalLink className="h-3.5 w-3.5" />
-                            Website tersedia
-                        </>
-                    ) : (
-                        <>
-                            <Clock className="h-3.5 w-3.5" />
-                            Website Segera Hadir
-                        </>
-                    )}
-                </p>
-
-                {/* Tombol aksi */}
+                {/* Tombol Masuk ke Website Unit (HANYA eksternal jika URL tersedia) */}
                 <div className="mt-auto pt-5">
                     {hasWebsite ? (
-                        <a href={unit.website_url ?? '#'} target="_blank" rel="noopener noreferrer">
-                            <Button className="w-full gap-1.5">
-                                Masuk ke Website Unit
+                        <a
+                            href={unit.website_url!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block w-full"
+                        >
+                            <Button className="w-full gap-2 bg-[#0033A0] text-white hover:bg-[#00236c] font-semibold text-sm shadow-sm transition">
+                                <span>Masuk ke Website Unit</span>
                                 <ExternalLink className="h-4 w-4" />
                             </Button>
                         </a>
                     ) : (
-                        <Button variant="outline" disabled className="w-full gap-1.5">
-                            Website Segera Hadir
-                            <ExternalLink className="h-4 w-4" />
+                        <Button
+                            variant="outline"
+                            disabled
+                            className="w-full gap-1.5 border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed text-sm"
+                        >
+                            <span>Website Segera Hadir</span>
+                            <Clock className="h-3.5 w-3.5" />
                         </Button>
                     )}
                 </div>
